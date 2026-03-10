@@ -21,5 +21,22 @@ namespace WebApplication10.Controllers
                 Value = value
             });
         }
+
+        public ActionResult HiddenDemo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PostHidden(string firstName, string lastName)
+        {
+            return View(new HiddenDemoViewModel
+            {
+                FirstName = firstName,
+                LastName = lastName
+            });
+        }
+
+
     }
 }

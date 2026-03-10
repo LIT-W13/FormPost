@@ -100,6 +100,8 @@
     </Compile>
     <Compile Include="Models\FormSubmissionViewModel.cs" />
     <Compile Include="Models\FurnitureDb.cs" />
+    <Compile Include="Models\FurnitureIndexViewModel.cs" />
+    <Compile Include="Models\HiddenDemoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -119,6 +121,8 @@
     </None>
     <Content Include="Views\Furniture\ShowAdd.cshtml" />
     <Content Include="Views\Furniture\Add.cshtml" />
+    <Content Include="Views\PostDemo\HiddenDemo.cshtml" />
+    <Content Include="Views\PostDemo\PostHidden.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

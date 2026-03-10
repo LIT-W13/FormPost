@@ -37,5 +37,28 @@ namespace WebApplication10.Models
             conn.Open();
             cmd.ExecuteNonQuery();
         }
+
+        public List<FurnitureItem> GetAll()
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM Furniture";
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<FurnitureItem> items = new List<FurnitureItem>();
+            while (reader.Read())
+            {
+                items.Add(new FurnitureItem
+                {
+                    Id = (int)reader["Id"],
+                    Color = (string)reader["Color"],
+                    Name = (string)reader["Name"],
+                    Price = (decimal)reader["Price"],
+                    QuantityInStock = (int)reader["QuantityInStock"]
+                });
+            }
+
+            return items;
+        }
     }
 }
