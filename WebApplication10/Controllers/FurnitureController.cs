@@ -38,6 +38,14 @@ namespace WebApplication10.Controllers
 
             return Redirect("/furniture/index");
         }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            FurnitureDb db = new FurnitureDb(Properties.Settings.Default.ConStr);
+            db.Delete(id);
+            return Redirect("/furniture/index");
+        }
     }
 
     //Create a page that displays a list of People (or whatever interests you).
