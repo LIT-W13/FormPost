@@ -70,5 +70,43 @@ namespace WebApplication10.Models
             conn.Open();
             cmd.ExecuteNonQuery();
         }
+
+        public FurnitureItem GetById(int id)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM Furniture WHERE Id = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (!reader.Read())
+            {
+                return null;
+            }
+
+            return new FurnitureItem
+            {
+                Id = (int)reader["Id"],
+                Color = (string)reader["Color"],
+                Name = (string)reader["Name"],
+                Price = (decimal)reader["Price"],
+                QuantityInStock = (int)reader["QuantityInStock"]
+            };
+        }
+
+        public void Update(FurnitureItem furnitureItem)
+        {
+            SqlConnection conn = new SqlConnection(_connectionString);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"UPDATE Furniture SET Name = @name, Color = @color, 
+                Price = @price, QuantityInStock = @qty WHERE Id = @id";
+            cmd.Parameters.AddWithValue("@id", furnitureItem.Id);
+            cmd.Parameters.AddWithValue("@name", furnitureItem.Name);
+            cmd.Parameters.AddWithValue("@color", furnitureItem.Color);
+            cmd.Parameters.AddWithValue("@price", furnitureItem.Price);
+            cmd.Parameters.AddWithValue("@qty", furnitureItem.QuantityInStock);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+        }
     }
 }

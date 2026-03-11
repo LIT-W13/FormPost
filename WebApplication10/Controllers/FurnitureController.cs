@@ -46,6 +46,30 @@ namespace WebApplication10.Controllers
             db.Delete(id);
             return Redirect("/furniture/index");
         }
+
+        
+        public ActionResult Edit(int id)
+        {
+            FurnitureDb db = new FurnitureDb(Properties.Settings.Default.ConStr);
+
+            FurnitureItem item = db.GetById(id);
+            //if(item == null)
+            //{
+            //    return Redirect("/furniture/index");
+            //}
+            return View(new EditFurnitureViewModel
+            {
+                Item = item
+            });
+        }
+
+        [HttpPost]
+        public ActionResult Update(FurnitureItem item)
+        {
+            FurnitureDb db = new FurnitureDb(Properties.Settings.Default.ConStr);
+            db.Update(item);
+            return Redirect("/furniture/index");
+        }
     }
 
     //Create a page that displays a list of People (or whatever interests you).

@@ -30,6 +30,7 @@
                             <th>Price</th>
                             <th>Quantity In Stock</th>
                             <th>Delete</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,11 +43,14 @@
                                 <td>@item.QuantityInStock</td>
                                 <td>
                                     <form method="post" action="/furniture/delete">
-                                        <input type="hidden" name="id" value="@item.Id"/>
-                                        <button class="btn btn-danger">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button class="btn btn-danger w-100">
                                             Delete
                                         </button>
                                     </form>
+                                </td>
+                                <td>
+                                    <a href="/furniture/edit?id=@item.Id" class="btn btn-warning w-100">Edit</a>
                                 </td>
                             </tr>
                         }
